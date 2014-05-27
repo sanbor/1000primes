@@ -36,14 +36,30 @@
     <p>end</p>
 
     <script>
+    /*
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+
+      You should have received a copy of the GNU General Public License
+      along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    */
+
     // Prime definition: An integer greater than one is called a prime
     // number if its only positive divisors (factors) are one and itself.
 
     function isPrime(x) {
       var prime = true;
+
       if (x > 1) {
-        // the condition is evaluated before the
-        // execution, so 2 is prime
+        // for's condition is evaluated before the statement, so
+        // 2 will be a prime because for's statement is never executed.
         for (var i = 2; i < x; i++) {
           if (x % i == 0) {
             prime = false;
