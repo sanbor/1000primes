@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>The First 1,000 Primes</title>
+
+  <style>
+    html {
+      font-family: monospace;
+      text-align: center;
+    }
+
+    table {
+      width: 60%;
+      margin: 0 auto;
+    }
+
+    table td {
+      text-align: right;
+    }
+  </style>
+  </head>
+
+  <body>
+    <h1>The First 1,000 Primes</h1>
+
+    <h2 id="last-prime"></h2>
+
+    <p>For more information on primes see <a href="http://primes.utm.edu/">http://primes.utm.edu/</a>.</p>
+
+    <p>This page is a clone of <a href="http://primes.utm.edu/lists/small/1000.txt">http://primes.utm.edu/lists/small/1000.txt</a>.</p>
+
+    <table id="list-of-primes"></table>
+
+    <p>end</p>
+
+    <script>
+    // Prime definition: An integer greater than one is called a prime
+    // number if its only positive divisors (factors) are one and itself.
+
+    function isPrime(x) {
+      var prime = true;
+      if (x > 1) {
+        // the condition is evaluated before the
+        // execution, so 2 is prime
+        for (var i = 2; i < x; i++) {
+          if (x % i == 0) {
+            prime = false;
+          }
+        }
+      } else {
+        prime = false;
+      }
+
+      return prime;
+    }
+
+    var primes = 0;
+    var x = 0;
+
+    var currentColumn = 1;
+    var primeTable = document.getElementById('list-of-primes');
+    var td;
+    var tr = primeTable.appendChild(document.createElement("tr"));
+
+    while (primes < 1000) {
+      // We increase x at the begining as we need to use the last prime we found
+      x++;
+
+      if (isPrime(x)) {
+        primes++;
+        td = document.createElement("td");
+        td.appendChild(document.createTextNode(x));
+        tr.appendChild(td);
+
+        if (currentColumn < 10) {
+          currentColumn++;
+        } else {
+          currentColumn = 1;
+          tr = primeTable.appendChild(document.createElement("tr"));
+        }
+      }
+    }
+
+    // Last prime header
+    var lastPrime = document.getElementById('last-prime');
+    lastPrime.appendChild(document.createTextNode('(the 1,000th is ' +
+    x + ')'));
+    </script>
+  </body>
+  </html>
